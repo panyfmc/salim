@@ -18,19 +18,21 @@ SoftwareSerial mySerial(Finger_Rx, Finger_Tx);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 // const char *ssid = "vai invadir?";
 // const char *password = "grmj1715";
-// const char *ssid = "brisa-PERIGO";
-// const char *password = "x6a2kgn2";
-const char *ssid = "Yepnet_Alvaro";
-const char *password = "Miojodegalinha02#";
+const char *ssid = "brisa-PERIGO";
+const char *password = "x6a2kgn2";
+// const char *ssid = "Yepnet_Alvaro";
+// const char *password = "Miojodegalinha02#";
 String postData ; 
 // String linkUrl = "http://172.19.0.4:8080/getdata.php"; 
-// String linkUrl = "http://192.168.0.2:8080/getdata.php"; 
-String linkUrl = "http://10.0.0.235:8080/getdata.php"; 
-// String linkUrl = "http://localhost/biometricattendance/getdata.php"; 
+String linkUrl = "http://192.168.0.2:8080/getdata.php"; 
+// String linkUrl = "http://10.0.0.235:8080/getdata.php"; 
+
 int FingerID = 0;     
 uint8_t id;
 #define Wifi_start_width 54
 #define Wifi_start_height 49
+
+
 const uint8_t PROGMEM Wifi_start_bits[] = {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -82,8 +84,10 @@ const uint8_t PROGMEM Wifi_start_bits[] = {
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
+
 #define Wifi_connected_width 63
 #define Wifi_connected_height 49
+
 const uint8_t PROGMEM Wifi_connected_bits[] = {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -135,8 +139,10 @@ const uint8_t PROGMEM Wifi_connected_bits[] = {
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
+
 #define FinPr_start_width 64
 #define FinPr_start_height 64
+
 const uint8_t PROGMEM FinPr_start_bits[] = {
   0x00,0x00,0x00,0x1f,0xe0,0x00,0x00,0x00
 ,0x00,0x00,0x01,0xff,0xfe,0x00,0x00,0x00
@@ -203,8 +209,10 @@ const uint8_t PROGMEM FinPr_start_bits[] = {
 ,0x00,0x00,0x00,0x1e,0x0e,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x18,0x00,0x00,0x00,0x00
 };
+
 #define FinPr_valid_width 64
 #define FinPr_valid_height 64
+
 const uint8_t PROGMEM FinPr_valid_bits[] = {
   0x00,0x00,0x03,0xfe,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x1f,0xff,0xe0,0x00,0x00,0x00
@@ -271,8 +279,10 @@ const uint8_t PROGMEM FinPr_valid_bits[] = {
 ,0x00,0x00,0x03,0xe0,0xe3,0xff,0xe0,0x00
 ,0x00,0x00,0x01,0x80,0x00,0x7f,0x00,0x00
 };
+
 #define FinPr_invalid_width 64
 #define FinPr_invalid_height 64
+
 const uint8_t PROGMEM FinPr_invalid_bits[] = {
   0x00,0x00,0x03,0xfe,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x1f,0xff,0xe0,0x00,0x00,0x00
@@ -339,8 +349,10 @@ const uint8_t PROGMEM FinPr_invalid_bits[] = {
 ,0x00,0x00,0x03,0xe0,0xe3,0xff,0xe0,0x00
 ,0x00,0x00,0x01,0x80,0x00,0x7f,0x00,0x00
 };
+
 #define FinPr_failed_width 64
 #define FinPr_failed_height 64
+
 const uint8_t PROGMEM FinPr_failed_bits[] = {
 0x00,0x00,0x3f,0xe0,0x00,0x00,0x00,0x00
 ,0x00,0x01,0xff,0xfe,0x00,0x00,0x00,0x00
@@ -407,8 +419,10 @@ const uint8_t PROGMEM FinPr_failed_bits[] = {
 ,0x00,0x01,0xff,0x80,0x3f,0xff,0xff,0xff
 ,0x00,0x00,0x3f,0x80,0x1f,0xff,0xff,0xfe
 };
+
 #define FinPr_scan_width 64
 #define FinPr_scan_height 64
+
 const uint8_t PROGMEM FinPr_scan_bits[] = {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -475,9 +489,10 @@ const uint8_t PROGMEM FinPr_scan_bits[] = {
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
+
 //********************connect to the WiFi******************
 void connectToWiFi(){
-  WiFi.mode(WIFI_OFF);        //Prevents reconnection issue (taking too long to connect)
+  WiFi.mode(WIFI_OFF);        // Evita problemas de reconexão (demora muito para conectar)
   delay(1000);
   WiFi.mode(WIFI_STA);
   Serial.print("Connecting to ");
@@ -511,7 +526,7 @@ void connectToWiFi(){
   display.display();
   
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+  Serial.println(WiFi.localIP()); 
 
 }
 
@@ -714,13 +729,13 @@ uint8_t deleteFingerprint(int id) {
 void ChecktoDeleteID(){
 
 WiFiClient client;
-  HTTPClient http;    //Declare object of class HTTPClient
+  HTTPClient http;   
   //Post Data
-  postData = "DeleteID=check"; // Add the Fingerprint ID to the Post array in order to send it
+  postData = "DeleteID=check"; 
   // Post methode
 
-  http.begin(client,linkUrl);  //initiate HTTP request, put your Website URL or Your Computer IP 
-  http.addHeader("Content-Type", "application/x-www-form-urlencoded");    //Specify content-type header
+  http.begin(client,linkUrl);  
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");    
   
   http.POST(postData);   //Send the request
   String payload = http.getString();    //Get the response payload
@@ -739,13 +754,13 @@ WiFiClient client;
 void confirmAdding(){
 
   WiFiClient client;
-    HTTPClient http;    //Declare object of class HTTPClient
+    HTTPClient http;    //Objeto da classe HTTPClient
     //Post Data
-    postData = "confirm_id=" + String(id); // Add the Fingerprint ID to the Post array in order to send it
+    postData = "confirm_id=" + String(id); 
     // Post methode
   
-    http.begin(client,linkUrl); //initiate HTTP request, put your Website URL or Your Computer IP 
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");    //Specify content-type header
+    http.begin(client,linkUrl); 
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");    
     
     http.POST(postData);   //Send the request
     String payload = http.getString();    //Get the response payload
@@ -829,9 +844,9 @@ uint8_t getFingerprintEnroll() {
       return p;
   }
   display.clearDisplay();
-  display.setTextSize(2);             // Normal 2:2 pixel scale
-  display.setTextColor(WHITE);        // Draw white text
-  display.setCursor(0,0);             // Start at top-left corner
+  display.setTextSize(2);             // Normal 2:2 pixel escala
+  display.setTextColor(WHITE);        // texto branco
+  display.setCursor(0,0);             // começo no canto superior esquerdo
   display.print(F("Remove"));
   display.setCursor(0,20);
   display.print(F("finger"));
@@ -859,9 +874,9 @@ uint8_t getFingerprintEnroll() {
       break;
     case FINGERPRINT_NOFINGER:
       //Serial.println(".");
-      display.setTextSize(1);             // Normal 2:2 pixel scale
-      display.setTextColor(WHITE);        // Draw white text
-      display.setCursor(0,0);             // Start at top-left corner
+      display.setTextSize(1);             // Normal 2:2 escala
+      display.setTextColor(WHITE);        // Texto branco
+      display.setCursor(0,0);             // começo no canto superior esquerdo
       display.print(F("scanning"));
       display.display();
       break;
@@ -888,24 +903,24 @@ uint8_t getFingerprintEnroll() {
       display.display();
       break;
     case FINGERPRINT_IMAGEMESS:
-      Serial.println("Image too messy");
+      Serial.println("Imagem ruim");
       return p;
     case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
+      Serial.println("Comunicação erro");
       return p;
     case FINGERPRINT_FEATUREFAIL:
-      Serial.println("Could not find fingerprint features");
+      Serial.println("Não encontrou características da digital");
       return p;
     case FINGERPRINT_INVALIDIMAGE:
-      Serial.println("Could not find fingerprint features");
+      Serial.println("Não encontrou características da digital");
       return p;
     default:
-      Serial.println("Unknown error");
+      Serial.println("Erro desconhecido");
       return p;
   }
   
   // OK converted!
-  Serial.print("Creating model for #");  Serial.println(id);
+  Serial.print("Creando modelo para #");  Serial.println(id);
   
   p = finger.createModel();
   if (p == FINGERPRINT_OK) {
@@ -914,20 +929,19 @@ uint8_t getFingerprintEnroll() {
     display.drawBitmap( 34, 0, FinPr_valid_bits, FinPr_valid_width, FinPr_valid_height, WHITE);
     display.display();
   } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
-    Serial.println("Communication error");
+    Serial.println("Comunicação erro");
     return p;
   } else if (p == FINGERPRINT_ENROLLMISMATCH) {
-    Serial.println("Fingerprints did not match");
+    Serial.println("Digitais não coincidem");
     return p;
   } else {
-    Serial.println("Unknown error");
+    Serial.println("Erro desconhecido");
     return p;
   }   
   
   Serial.print("ID "); Serial.println(id);
   p = finger.storeModel(id);
   if (p == FINGERPRINT_OK) {
-    //Serial.println("Stored!");
     display.clearDisplay();
     display.drawBitmap( 34, 0, FinPr_valid_bits, FinPr_valid_width, FinPr_valid_height, WHITE);
     display.display();
@@ -946,13 +960,13 @@ uint8_t getFingerprintEnroll() {
     return p;
   }   
   return p;
-  return FINGERPRINT_OK; // Adicionado retorno para indicar sucesso
+  return FINGERPRINT_OK; 
 }
 
 
 //******************Check if there a Fingerprint ID to add******************
 void ChecktoAddID(){
-Serial.println("ENTROUUUuuuuuuuuuuuuuuuuuu");
+// Serial.println("ENTROUUUuuuuuuuuuuuuuuuuuu");
 WiFiClient client;
   HTTPClient http;    
   //Post Data
@@ -966,7 +980,6 @@ WiFiClient client;
   String payload = http.getString();    
   Serial.println("batata: " + payload);
   if (payload.substring(0, 6) == "add-id") {
-    Serial.println("ENTROUUUuuuuuuuu no IF");
     String add_id = payload.substring(6);
     Serial.println(add_id);
     id = add_id.toInt();
@@ -1008,14 +1021,13 @@ void setup() {
   Serial.println("Waiting for valid finger...");
 }
 
-// alvaro esteve aqui
 
 void loop() {
 
-  //check if there's a connection to WiFi or not
   if(WiFi.status() != WL_CONNECTED){
     connectToWiFi();
   }
+  
   FingerID = getFingerprintID();  
   delay(50);  
   DisplayFingerprintID();
