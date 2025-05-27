@@ -8,7 +8,7 @@ if (isset($_POST['FingerID'])) {
 	$sql = "SELECT * FROM user WHERE fingerprint_id = ?";
     $result = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($result, $sql)) {
-        echo "SQL_Error_Select_card";
+        echo "SQL erro seleção";
         exit();
     }
     else{
@@ -16,23 +16,23 @@ if (isset($_POST['FingerID'])) {
         mysqli_stmt_execute($result);
         $resultl = mysqli_stmt_get_result($result);
         if ($row = mysqli_fetch_assoc($resultl)){
-        	//*****************************************************
-            //An existed fingerprint has been detected for Login or Logout
+        	
+            // Uma impressão digital existente foi detectada para login ou logout
             if (!empty($row['username'])){
             	$Uname = $row['username'];
                 $Number = $row['serialnumber'];
                 $sql = "SELECT * FROM users_logs WHERE fingerprint_id=? AND checkindate=CURDATE() AND timeout='00:00:00'";
                 $result = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($result, $sql)) {
-                    echo "SQL_Error_Select_logs";
+                    echo "SQL erro no log";
                     exit();
                 }
                 else{
                 	mysqli_stmt_bind_param($result, "i", $fingerID);
                     mysqli_stmt_execute($result);
                     $resultl = mysqli_stmt_get_result($result);
-                    //*****************************************************
-                    //Login
+                    
+                    // Login
                     if (!$row = mysqli_fetch_assoc($resultl)){
 
                     	$sql = "INSERT INTO users_logs (username, serialnumber, fingerprint_id, checkindate, timein, timeout) VALUES (? ,?, ?, CURDATE(), CURTIME(), ?)";
@@ -50,8 +50,8 @@ if (isset($_POST['FingerID'])) {
                             exit();
                         }
                     }
-                    //*****************************************************
-                    //Logout
+                    
+                    // Logout
                     else{
                     	$sql="UPDATE users_logs SET timeout=CURTIME() WHERE fingerprint_id=? AND checkindate=CURDATE()";
                         $result = mysqli_stmt_init($conn);
@@ -130,7 +130,7 @@ if (isset($_POST['FingerID'])) {
         else{
         	$Uname = "";
             $Number = "";
-            $gender= "";
+           
 
             $sql = "SELECT fingerprint_select FROM user WHERE fingerprint_select=1";
             $result = mysqli_stmt_init($conn);
@@ -151,7 +151,7 @@ if (isset($_POST['FingerID'])) {
                     else{
                         mysqli_stmt_execute($result);
 
-                        $sql = "INSERT INTO user (username , serialnumber, gender, fingerprint_id, fingerprint_select) VALUES (?, ?, ?, ?, ?)";
+                        $sql = "INSERT INTO user (username , serialnumber, fingerprint_id, fingerprint_select) VALUES (?, ?, ?, ?)";
                         $result = mysqli_stmt_init($conn);
                         if (!mysqli_stmt_prepare($result, $sql)) {
                             echo "SQL_Error_Select_add";
@@ -159,7 +159,7 @@ if (isset($_POST['FingerID'])) {
                         }
                         else{
                             $fingerprint_select = 1;
-                            mysqli_stmt_bind_param($result, "sdssi", $Uname, $Number, $gender, $fingerID, $fingerprint_select); // Updated format string and parameters
+                            mysqli_stmt_bind_param($result, "sdsi", $Uname, $Number, $fingerID, $fingerprint_select); // Updated format string and parameters
                             // mysqli_stmt_bind_param($result, "sdsi", $Uname, $Number, $gender, $fingerID);
                             mysqli_stmt_execute($result);
 
@@ -169,7 +169,7 @@ if (isset($_POST['FingerID'])) {
                     }
                 }
                 else{
-                	$sql = "INSERT INTO user (username , serialnumber, gender, fingerprint_id, fingerprint_select) VALUES (?, ?, ?, ?, ?)";
+                	$sql = "INSERT INTO user (username, serialnumber, fingerprint_id, fingerprint_select) VALUES (?, ?, ?, ?)";
                     $result = mysqli_stmt_init($conn);
                     if (!mysqli_stmt_prepare($result, $sql)) {
                         echo "SQL_Error_Select_add";
@@ -177,7 +177,7 @@ if (isset($_POST['FingerID'])) {
                     }
                     else{
                         $fingerprint_select = 1;
-                        mysqli_stmt_bind_param($result, "sdssi", $Uname, $Number, $gender, $fingerID, $fingerprint_select); // Updated format string and parameters
+                        mysqli_stmt_bind_param($result, "sdsi", $Uname, $Number, $fingerID, $fingerprint_select); // Updated format string and parameters
                         mysqli_stmt_execute($result);
 
                         echo "succesful2";

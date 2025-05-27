@@ -39,7 +39,7 @@
 <body>
 <?php include'header.php';?>
 <main>
-	<h1 class="slideInDown animated">Add a new User or update his information <br> or remove him</h1>
+	<h1 class="slideInDown animated">Adicione, atualize ou remova um usuário</h1>
 	<div class="form-style-5 slideInDown animated">
 		<div class="alert">
 		<label id="alert"></label>
@@ -62,8 +62,7 @@
 			<label>
 				Time In:
 				<input type="time" name="timein" id="timein">
-				<input type="radio" name="gender" class="gender" value="Female">Female
-	          	<input type="radio" name="gender" class="gender" value="Male" checked="checked">Male
+				
 	      	</label >
 			</fieldset>
 			<button type="button" name="user_add" class="user_add">Add User</button>
@@ -80,7 +79,6 @@
 		        <tr>
 	        	  <th>Finger .ID</th>
 		          <th>Name</th>
-		          <th>Gender</th>
 		          <th>S.No</th>
 		          <th>Date</th>
 		          <th>Time in</th>

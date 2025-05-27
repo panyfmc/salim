@@ -7,7 +7,7 @@ $(document).ready(function(){
     var email = $('#email').val();
     //Additional Info
     var timein = $('#timein').val();
-    var gender = $(".gender:checked").val();
+  
     
     $.ajax({
       url: 'manage_users_conf.php',
@@ -18,7 +18,7 @@ $(document).ready(function(){
         'number': number,
         'email': email,
         'timein': timein,
-        'gender': gender,
+        
       },
       success: function(response){
         $('#name').val('');
@@ -26,7 +26,7 @@ $(document).ready(function(){
         $('#email').val('');
 
         $('#timein').val('');
-        $('#gender').val('');
+        
         
         $('#alert').show();
         $('#alert').text(response);
@@ -71,7 +71,7 @@ $(document).ready(function(){
     var email = $('#email').val();
     //Additional Info
     var timein = $('#timein').val();
-    var gender = $(".gender:checked").val();
+ 
 
     $.ajax({
       url: 'manage_users_conf.php',
@@ -82,7 +82,7 @@ $(document).ready(function(){
         'number': number,
         'email': email,
         'timein': timein,
-        'gender': gender,
+       
       },
       success: function(response){
         $('#name').val('');
@@ -90,7 +90,7 @@ $(document).ready(function(){
         $('#email').val('');
 
         $('#timein').val('');
-        $('#gender').val('');
+        
 
         $('#alert').show();
         $('#alert').text(response);
@@ -117,7 +117,7 @@ $(document).ready(function(){
         $('#email').val('');
 
         $('#timein').val('');
-        $('#gender').val('');
+       
 
         $('#alert').show();
         $('#alert').text(response);

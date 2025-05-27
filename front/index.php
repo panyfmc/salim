@@ -26,7 +26,7 @@
         <tr>
           <th>ID | Name</th>
           <th>Serial Number</th>
-          <th>Gender</th>
+         
           <th>Finger ID</th>
           <th>Date</th>
           <th>Time In</th>
@@ -55,7 +55,7 @@
                       <TR>
                       <TD><?php echo $row['id']; echo" | "; echo $row['username'];?></TD>
                       <TD><?php echo $row['serialnumber'];?></TD>
-                      <TD><?php echo $row['gender'];?></TD>
+                      
                       <TD><?php echo $row['fingerprint_id'];?></TD>
                       <TD><?php echo $row['user_date'];?></TD>
                       <TD><?php echo $row['time_in'];?></TD>

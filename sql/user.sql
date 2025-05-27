@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 			`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`username` varchar(100) NOT NULL,
 			`serialnumber` double NOT NULL,
-			`gender` varchar(10) NOT NULL,
 			`email` varchar(50) NOT NULL,
 			`fingerprint_id` int(11) NOT NULL,
 			`fingerprint_select` tinyint(1) NOT NULL DEFAULT '0',
