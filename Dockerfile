@@ -12,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get clean
 # Instalar extensões necessárias para o MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Habilitar o módulo rewrite do Apache (se necessário para sua aplicação)
+# Habilitar o módulo rewrite do Apache
 RUN a2enmod rewrite
 
 # Definir permissões (ajustar se necessário)
