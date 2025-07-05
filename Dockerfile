@@ -15,6 +15,6 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Habilitar o módulo rewrite do Apache
 RUN a2enmod rewrite
 
-# Definir permissões (ajustar se necessário)
+# Definir permissões
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
